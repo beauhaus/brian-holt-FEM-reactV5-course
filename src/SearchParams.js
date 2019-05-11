@@ -9,14 +9,20 @@ const SearchParams = () => {
   const [location, updateLocation] = useState("Seattle, WA");
   const [breeds, setBreeds] = useState([]);
   const [animal, AnimalDropdown] = useDropdown("Animal", "dog", ANIMALS);
-  const [breed, BreedDropdown] = useDropdown("breed", "", breeds);
+  const [breed, BreedDropdown, setBreed] = useDropdown("breed", "", breeds);
 
-  // const [animal, setAnimal] = useState("dog");
-  // const [breed, setBreed] = useState({});
-
+  /* NOTE:
+   * useEffect will be "scheduled to" run AFTER
+   * 1st render of SearchParms return value
+   */
   useEffect(() => {
-    // pet.breeds("dog").then(console.log, console.error);
-  });
+    setBreeds([]);
+    setBreed("");
+    pet.breeds(animal).then(({ breeds }) => {
+      const breedStrings = breeds.map(({ name }) => name);
+      setBreeds(breedStrings);
+    }, console.error);
+  }, [animal, setBreed, setBreeds]);
 
   return (
     <div className="search-params">

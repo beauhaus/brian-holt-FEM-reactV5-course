@@ -10,20 +10,12 @@ const SearchParams = () => {
   const [breed, BreedDropdown, setBreed] = useDropdown("breed", "", breeds);
   const [pets, setPets] = useState([]);
 
-  /* NOTE:
-   * This async function
-   *
-   *
-   */
   async function requestPets() {
-    console.log("async function requestPets ran");
     const { animals } = await pet.animals({
       pet,
       breed,
       type: animal
     });
-    console.log("animals: ", animals);
-
     setPets(animals || []);
   }
 
@@ -37,6 +29,7 @@ const SearchParams = () => {
    * IN ORDER TO RUN IT ONCE & NO MORE -> use an empty array
    * IN ORDER TO RUN IT EVERY SINGLE TIME COMP RENDERS, remove the param entirely
    */
+
   useEffect(() => {
     setBreeds([]);
     setBreed("");

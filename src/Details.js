@@ -8,7 +8,6 @@ class Details extends Component {
   state = { loading: true };
 
   componentDidMount() {
-    // throw new Error("OMG WTF! LMAO!");
     pet.animal(this.props.id).then(({ animal }) => {
       this.setState({
         name: animal.name,
@@ -33,21 +32,18 @@ class Details extends Component {
           <h1>{name}</h1>
           <h2>{`${animal}-${breed}-${location}-`}</h2>
           <ThemeContext.Consumer>
-            {themeHook => (
-              <button style={{ backgroundColor: themeHook[0] }}>
-                Adopt {name}
-              </button>
+            {([theme]) => (
+              <button style={{ background: theme }}>Adopt {name}</button>
               /*
               NOTE: above can be destructured to pull the "theme" out
               of the array...
-            {([theme]) => (
-              <button style={{ backgroundColor: theme }}>
+            {(themeHook) => (
+              <button style={{ backgroundColor: themeHook[0] }}>
               ...
-               
               */
             )}
           </ThemeContext.Consumer>
-          <p>{`${description}`}</p>
+          <p>{description}</p>
         </div>
       </div>
     );

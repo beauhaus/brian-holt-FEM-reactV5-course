@@ -8,11 +8,11 @@ class Carousel extends Component {
   static getDerivedStateFromProps({ media }) {
     let photos = [`http://placecorgi.com/600/600`];
 
-    console.log("photos(#1): ", photos);
+    // console.log("photos(#1): ", photos);
     if (media.length) {
-      console.log("Media Len: ", media.length);
+      // console.log("Media Len: ", media.length);
       photos = media.map(({ large }) => large);
-      console.log("photos(#2)", photos);
+      // console.log("photos(#2)", photos);
     }
     return { photos };
   }
@@ -30,8 +30,8 @@ class Carousel extends Component {
   render() {
     // let corgi = [`http://placecorgi.com/600/600`];
     const { photos, active } = this.state;
-    console.log("t.s.active: ", active);
-    console.log("photos : ", photos);
+    // console.log("t.s.active: ", active);
+    // console.log("photos : ", photos);
 
     return (
       <div className="carousel">

@@ -6,7 +6,7 @@ import Details from "./Details";
 import ThemeContext from "./ThemeContext";
 
 const App = () => {
-  const themeHook = useState("peru"); //dkblue is default value
+  const themeHook = useState("darkblue"); //dkblue is default value
   return (
     <React.StrictMode>
       <ThemeContext.Provider value={themeHook}>

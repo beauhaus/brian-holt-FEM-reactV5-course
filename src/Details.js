@@ -2,11 +2,13 @@ import React, { Component } from "react";
 // import Pet from "./Pet";
 import pet from "@frontendmasters/pet";
 import Carousel from "./Carousel";
+import ErrorBoundary from "./ErrorBoundaries";
 
 class Details extends Component {
   state = { loading: true };
 
   componentDidMount() {
+    // throw new Error("OMG WTF! LMAO!");
     pet.animal(this.props.id).then(({ animal }) => {
       this.setState({
         name: animal.name,
@@ -38,4 +40,20 @@ class Details extends Component {
   }
 }
 
-export default Details;
+export default function DetailsWithErrorBoundary(props) {
+  return (
+    <ErrorBoundary>
+      <Details {...props} />
+    </ErrorBoundary>
+  );
+}
+
+/*
+NOTE ON "{...props}"... 
+
+Instead of naming every single prop and sending them down to details... 
+and instead of doing "props={props}" 
+
+{...props} enables the convenience of the same dot-notation in each child
+
+*/

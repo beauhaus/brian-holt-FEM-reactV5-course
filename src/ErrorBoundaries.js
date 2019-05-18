@@ -31,16 +31,11 @@ class ErrorBoundary extends Component {
       return <Redirect to="/" />;
     }
     if (this.state.hasError) {
-      return (
-        <h1>
-          OOPS! There was an error with this listing <Link to="/">HOME</Link>
-        </h1>
-      );
+      return <h1>OOPS! There was an error with this listing</h1>;
     }
     return this.props.children;
   }
 }
-
 export default ErrorBoundary;
 
 /*
